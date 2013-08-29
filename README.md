@@ -34,7 +34,7 @@ Simply use:
 I do not include the JD-Core library since the author of JD does not want to
 publish a library.
 
-Building will download the JD-IntelliJ plugin from bitbucket, and copy the
+Building will download the [JD-IntelliJ](https://bitbucket.org/bric3/jd-intellij) plugin from bitbucket, and copy the
 libjd-intellij.so library in the root directory of the project.
 
 Once the project is built, the two files jd-core-java-1.0.jar libjd-intellij.so

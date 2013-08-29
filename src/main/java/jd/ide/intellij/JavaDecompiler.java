@@ -1,15 +1,31 @@
 package jd.ide.intellij;
 
+import java.io.File;
+import java.net.URL;
+
 public class JavaDecompiler {
     static {
-        String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+        String arch = System.getProperty("os.arch");
+        String libName = "";
+        if (os.indexOf("win") >= 0) {
+            os = "windows";
+            libName = "jd-intellij.dll";
+        } else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0 || os.indexOf("aix") > 0) {
+            os = "unix";
+            libName = "libjd-intellij.so";
+        } else if (os.indexOf("mac") >= 0) {
+            os = "macosx";
+            libName = "libjd-intellij.jnilib";
+        }
+
         try {
-            path = JavaDecompiler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            path = java.net.URLDecoder.decode(path, "UTF-8");
-            path = new java.io.File(path).getParent();
-            System.load(path + "/libjd-intellij.so");
+            URL path = JavaDecompiler.class.getProtectionDomain().getCodeSource().getLocation();
+            String parent = new File(path.toURI()).getParent();
+
+            System.load(parent + "/nativelib/" + os + "/" + arch + "/" + libName);
         } catch (Exception e) {
-            throw new IllegalStateException("Something got wrong when loading the Java Decompiler native lib at " + path);
+            throw new RuntimeException(e);
         }
     }
 
