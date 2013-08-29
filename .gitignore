@@ -1,4 +1,6 @@
-*.so
 *.class
 target/
 jd-intellij/
+.classpath
+.project
+.settings
