@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DECOMPILER="$0"
+# if it is a link, find the real path
+if [ -L "$DECOMPILER" ]; then
+  DECOMPILER=`ls $DECOMPILER -l | sed "s/.*-> //g"`
+fi
+DECOMPILER="`dirname $DECOMPILER`/jd-core-java-1.0.jar"
+
+java -jar $DECOMPILER $1 $2
