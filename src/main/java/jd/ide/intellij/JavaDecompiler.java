@@ -25,8 +25,9 @@ public class JavaDecompiler {
         try {
             URL path = JavaDecompiler.class.getProtectionDomain().getCodeSource().getLocation();
             String parent = new File(path.toURI()).getParent();
+            String libPath = "/nativelib/" + os + "/" + arch + "/" + libName;
 
-            System.load(parent + "/nativelib/" + os + "/" + arch + "/" + libName);
+            System.load(parent + libPath.replace("/", File.separator));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
