@@ -31,6 +31,10 @@ Simply use:
 
     make
 
+Then install:
+
+    make install
+
 I do not include the JD-Core library since the author of JD does not want to
 publish a library.
 
@@ -65,6 +69,10 @@ From the command line:
 ```shell
 # Outputs all the sources of compiled.jar into out_dir
 java -jar jd-core-java.jar <compiled.jar> <out_dir>
+```
+For *nix user:
+```shell
+~$ jdecompiler <compiled.jar> <out_dir>
 ```
 
 License

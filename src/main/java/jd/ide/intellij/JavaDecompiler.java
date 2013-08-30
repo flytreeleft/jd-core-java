@@ -12,11 +12,14 @@ public class JavaDecompiler {
             os = "windows";
             libName = "jd-intellij.dll";
         } else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0 || os.indexOf("aix") > 0) {
-            os = "unix";
+            os = "linux";
             libName = "libjd-intellij.so";
         } else if (os.indexOf("mac") >= 0) {
             os = "macosx";
             libName = "libjd-intellij.jnilib";
+        }
+        if ("i386".equals(arch)) {
+            arch = "x86";
         }
 
         try {

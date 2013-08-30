@@ -1,18 +1,18 @@
-ARCH=linux/x86_64
+TARGET=/usr/local/share/jdecompiler
 
-all: jd-core-java-1.0.jar libjd-intellij.so
+all: jd-core-java.jar nativelib
 
-jd-intellij:
+nativelib:
 #	hg clone https://bitbucket.org/bric3/jd-intellij
 
-libjd-intellij.so: jd-intellij
-#	cp jd-intellij/src/main/native/nativelib/${ARCH}/libjd-intellij.so .
-
-target/jd-core-java-1.0.jar:
-	mvn package
-
-jd-core-java-1.0.jar: target/jd-core-java-1.0.jar
-	cp $< $@
+jd-core-java.jar:
+	mvn package && cp target/jd-core-java-*.jar $@
 
 clean:
-	rm -rf jd-core-java-1.0.jar libjd-intellij.so target jd-intellij
+	rm -rf jd-core-java.jar target
+
+install:
+	[ -e "${TARGET}" ] && rm -r "${TARGET}"
+	mkdir "${TARGET}" \
+		&& cp -R jd-core-java.jar nativelib jdecompiler "${TARGET}" \
+		&& ln -s -f "${TARGET}/jdecompiler" /usr/local/bin/jdecompiler

@@ -5,6 +5,6 @@ DECOMPILER="$0"
 if [ -L "$DECOMPILER" ]; then
   DECOMPILER=`ls $DECOMPILER -l | sed "s/.*-> //g"`
 fi
-DECOMPILER="`dirname $DECOMPILER`/jd-core-java-1.0.jar"
+DECOMPILER="`dirname $DECOMPILER`/jd-core-java.jar"
 
 java -jar $DECOMPILER $1 $2
